@@ -152,3 +152,18 @@ Permission represents the access to individual objects such as menu items, table
 Each function in FO apps such as a form or a service, is accessed through an entry point.
 
 Entry Point : Menu items, web content items and service operations are referred to collectively as entry points. 
+
+##### Implement and Configure Security Roles.
+
+>> System Administration > Users
+
+We can also see the users online, user log.
+
+![security configuration](Images/securitz%20configuration.png)
+
+We can also the AOT name in the screenshot which stands for APPLICATION OBJECT TREE (AOT). 
+
+The Application Object Tree (AOT) contains all of the definitions of elements that are used to build Microsoft
+Dynamics 365 F&O, such as classes, tables, forms and so on. 
+
+So for the time that you are developing to extend the application within the code, if you want to access this particular for example role, you should use a AOT name and not the display name that you see in the role list.
