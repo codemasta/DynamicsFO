@@ -167,3 +167,42 @@ The Application Object Tree (AOT) contains all of the definitions of elements th
 Dynamics 365 F&O, such as classes, tables, forms and so on. 
 
 So for the time that you are developing to extend the application within the code, if you want to access this particular for example role, you should use a AOT name and not the display name that you see in the role list.
+
+![security configuration setting](Images/securityconfiguration%20setting.png)
+
+The plus + in the References means the Role has been setup for it. So when you click any item in the References you will see what it has access to. 
+
+SOX -> Sarbanes Oxley International Financial Reporting Standards.
+
+##### SEGREGATION OF DUTIES
+
+This means that a duty that should not be performed by one person to prevent fraud which is a SOX compliance issue too.
+
+![sample segregation of duty](Images/sample%20segregation%20of%20duties.png)
+
+In above Sarah cannot be generating receipts and also process payment to vendor as this mean Sarah can forge the receipt without even processing the payments.
+
+![segregation of duties](Images/segregation%20of%20duties.png)
+
+So D365FO allows us to configure 2 duty that cannot or should not be done by 1 person. So you cannot have the first duty and also have the second duty as a single person. 
+
+We use Segregation of Duty in D365FO as shown above.
+
+
+>> System administration > Security > Segregation of duties > Segregation of duties rules
+
+Under the Segregation of duties sub menu, we can also see the list of those in the SOD conflicts and also Verify Compliance of User-Role Assignments.
+
+```
+Segregation of duties unresolved conflicts   
+Verify compliance of user-role assignments
+```
+
+##### SECURITY REPORTS
+It can be found under System Administrations > Inquiries > Security
+
+Then we use the RECORDS TO INCLUDE to filter the employees we want to extract.
+
+See sample file [User role assignments.pdf](User role assignments.pdf)
+
+Security Role Access : provides a view of the effective permissions for each security role.
