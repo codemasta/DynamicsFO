@@ -70,8 +70,6 @@ Each module have their own number sequence setup. See for Account Payable.
 
 To speed up setup it's better to use the Number Sequence Wizard to set up the number sequence as there are lots of sequence to setup in the System. 
 
-![ns wizard](Images/nswizard.png)
-
 ##### GLOBAL ADDRESS BOOK
 
 ![global address book](Images/globaladdressbook.png)
@@ -95,7 +93,7 @@ Contact : A person inside or outside your organization that you have created in 
 
 >>> Organization Administration > Global Address Book
 
-![Global Address Book](Images/global%20address%20book%20party.png)
+![Global Address Book](Images/globaladdressbookparty.png)
 
 We can click on the NEW to create a new party. 
 
