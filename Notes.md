@@ -1,3 +1,6 @@
+
+DOCUMENTATION : https://learn.microsoft.com/en-us/dynamics365/finance/
+
 ![d365 overview](Images/d365overview.png)
 
 It's offered in the Cloud by Microsoft. So each organization is considered as a tenant.
@@ -204,3 +207,54 @@ Then we use the RECORDS TO INCLUDE to filter the employees we want to extract.
 See sample file [User role assignments.pdf](User role assignments.pdf)
 
 Security Role Access : provides a view of the effective permissions for each security role.
+
+###### WORK WITH WORKFLOWS IN F&O
+
+A workflow represents a business process. It defines how a document flows or moves through the system by showing who must complete a task, make a decision either by using a manual or conditional decision controls, or approve a document.
+
+![workflow](Images/workflow.png)
+
+![workflow chart](Images/workflowchart.png)
+
+Workflow Types
+_____
+- A workflow configuration is based on a workflow type.
+- You can create multiple workflow configurations for each workflow type.
+- Workflow types are available for numerous modules throughout the system.
+- You can develop new workflows and extend F&O apps using Visual Studio.
+- Before developing a new workflow make sure you've checked all available workflow types.
+
+Some modules that contains workflow types templates out of the box.
+- General ledger 
+- Accounts payable
+- Accounts receivable
+- Budgeting 
+- Fixed asset
+- HR
+- Procurement and Sourcing
+- Inventory Management
+- Project and Accounting
+- Time and Attendance
+- Cash and Bank
+- Commerce
+
+https://learn.microsoft.com/en-us/previous-versions/dynamicsax-2012/appuser-itpro/workflow-types
+
+Let's try a sample in Procurement.
+
+![procurementworkflowoverview](Images/procurementworkflowoverview.png)
+
+Association (Organization-Wide) => Organization wide means it applies to all the legal entities
+Association (01) => 01 means it applies only to the selected legal entity.
+
+We can also click on the NEW to create a new one. So let's try a new one 
+
+>> Purchase Requisition Line Review (Use this type to create review workflows for purchase requisition lines) 
+
+When we click on it , Microsoft downloads a package to our PC which Microsoft uses to edit the workflows called Workflow editor. Then launch it as it's a desktop app.
+
+![workflow builder](Images/workflow%20builder.png)
+
+Then click on Properties to set some settings, condition , message etc.
+
+Then we can use the left pane to add the controls to the Workflow. 
