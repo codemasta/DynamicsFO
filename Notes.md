@@ -258,3 +258,26 @@ When we click on it , Microsoft downloads a package to our PC which Microsoft us
 Then click on Properties to set some settings, condition , message etc.
 
 Then we can use the left pane to add the controls to the Workflow. 
+
+### FINANCE CORE CONCEPT IN D365 F&O
+
+GENERAL LEDGER
+- General Ledger is used to define and manage the legal entity's financial records.
+- The general ledger is a register of debit and credit entities
+- These entries are classified using the accounts that are listed in a chart of accounts.  
+
+CASH AND BANK MANAGEMENT
+- Can be used to maintain the legal entity's bank accounts and financial instruments that are associated with those bank accounts.
+- These instruments include deposit slips, checks, bills of exchange, and promissory notes.
+- It can also be used for reconcile bank statements and print bank data on standard reports.
+
+TAX 
+The Sales tax framework supports many types of indirect taxes, such as 
+- sales tax
+- value-added-tax (VAT)
+- goods and services tax (GST)
+- unit-based fees
+- withholding tax
+
+These taxes are calculated and documented during purchase and sales transactions.
+Periodically, they must be reported and paid to tax authorities.
