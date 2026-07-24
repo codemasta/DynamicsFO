@@ -281,3 +281,25 @@ The Sales tax framework supports many types of indirect taxes, such as
 
 These taxes are calculated and documented during purchase and sales transactions.
 Periodically, they must be reported and paid to tax authorities.
+
+ACCOUNTS PAYABLE
+- Manage your vendor accounts
+- Vendor invoices
+
+ACCOUNT RECEIVABLE
+- Track your customer invoices
+- Manage their payments
+
+CREDIT AND COLLECTION
+- You can manage credit limits for your customers and perform collection activities when they become necessary.
+  
+BUDGETING 
+ - It allows to capture required information to enable finance team to generate reports of Budget vs Actuals.
+ - Also to control budget within the processes.
+
+FIX ASSETS
+ - Items of values such as vehicles, building , land which are owned by individuals or the company 
+ - You can set up and enter acquisition information for fixed assets and then manage them by depreciating them and setting a capitalization threshold to determine depreciation.
+
+COST ACCOUNTING
+ - It lets you collect data from various sources ,such as the general ledger , sub-ledgers , budgets, and statistical information.
