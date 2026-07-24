@@ -428,3 +428,13 @@ _____
 4. Electronic Payments  
 
 SEPA : Single Euro Payments Area , is set up by the European Commission dictates that all electronic payments are considered domestic.  
+
+##### CASH AND BANK MANAGEMENT TASKS
+
+![Cash and bank](Images/cashandbank.png)
+
+Letters of Credits are : bank documents that are commonly used for the purchase abd sales of goods across international borders.  
+
+Letters of credit are used for international transactions to ensure that payments will be made.
+
+Letter of Guarantee : It is an agreement by a bank (the guarantor) to pay a set of amount of money to some person (the beneficiary). If a bank customer (the principal) defaults on a payment or an obligation to the beneficiary.
