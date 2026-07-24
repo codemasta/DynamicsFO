@@ -401,3 +401,9 @@ Financial dimension sets — used to group dimensions for reporting or security 
 Default dimensions — you can set defaults at the customer, vendor, item, or worker level so transactions auto-populate the right dimension values.  
 
 ![financialdimension](Images/financialdimensions.png)
+
+Currency is also under General Ledger i.e Exchange Rate
+
+###### FISCAL CALENDAR SETUP  
+
+![fiscal calendar](Images/fiscalyearcalendar.png)
