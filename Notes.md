@@ -265,6 +265,26 @@ GENERAL LEDGER
 - General Ledger is used to define and manage the legal entity's financial records.
 - The general ledger is a register of debit and credit entities
 - These entries are classified using the accounts that are listed in a chart of accounts.  
+- Financial Structure  
+      - Chart of accounts  
+      - Account structure  
+      - Financial dimensions  
+      - Defining Fiscal Calendar   
+-  It's the center of finance  
+- FEATURES  
+      -> Accruals   
+            - Accruals are used in accrual accounting (Revenue recognition)   
+            - to track revenue that is recognized in the period that ti's earned in, not when payment is received.  
+            - to track expenses (costs) that are recognized when they occur, not when payment is made.  
+      -> Allocation  
+            - You can allocate or distribute, monetary amounts to one or more accounts or to account and dimension combinations, based on allocation rules.  
+            -  Two types of allocations are fixed and variable.  
+            -  You can also settle transactions between ledger accounts and revalue currency amounts.  
+      -> Year-end closing process   
+            - Close transactions  
+            - Prepare accounts for next fiscal year  
+            - Consolidation functionality
+        
 
 CASH AND BANK MANAGEMENT
 - Can be used to maintain the legal entity's bank accounts and financial instruments that are associated with those bank accounts.
