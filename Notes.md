@@ -407,3 +407,24 @@ Currency is also under General Ledger i.e Exchange Rate
 ###### FISCAL CALENDAR SETUP  
 
 ![fiscal calendar](Images/fiscalyearcalendar.png)
+
+![generalledger](Images/generalledger.png)
+
+##### ACCOUNTS PAYABLE OVERVIEW
+
+![accountspayable](Images/accountspayableoverview.png)
+
+##### ACCOUNT RECEIVABLE OVERVIEW  
+
+![accountsrecievable](Images/accountrecievable.png)
+
+Free text Invoices are invoices not related to SalesOrder.   
+
+Bills Of Exchange 
+_____
+1. Cash
+2. Checks
+3. Credit Card
+4. Electronic Payments  
+
+SEPA : Single Euro Payments Area , is set up by the European Commission dictates that all electronic payments are considered domestic.  
