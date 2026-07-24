@@ -283,7 +283,21 @@ GENERAL LEDGER
       -> Year-end closing process   
             - Close transactions  
             - Prepare accounts for next fiscal year  
-            - Consolidation functionality
+            - Consolidation functionality  
+      -> Financial Reporting 
+            - Consolidate multiple companies during report generation      
+            - These reports can be run anytime  
+            - These reports provide ability to drill down to all companies and dimensions.
+
+General Ledger Integration.
+![generalledgerintegration](Images/generalledgerintegration.png)  
+
+Chart of Account
+![chartofaccount](Images/chartofacount.png)
+
+A main account is an account in the general ledger. It is used to record financial transactions, balances, or totals that pertain to assets, liabilities, revenues, expenses and owner equity. 
+
+A chart of accounts (COA) is an index of all the financial accounts in the general ledger of a company.
         
 
 CASH AND BANK MANAGEMENT
@@ -323,3 +337,67 @@ FIX ASSETS
 
 COST ACCOUNTING
  - It lets you collect data from various sources ,such as the general ledger , sub-ledgers , budgets, and statistical information.
+
+##### FINANCIAL DIMENSIONS
+
+Financial dimensions are attributes (or tags) attached to financial transactions so organizations can track and report income and expenses in more detail than just the general ledger account.
+
+Think of them as "labels" that answer questions about a transaction.
+
+For example, imagine your company buys 10 laptops for €15,000.
+
+The general ledger account tells you what the transaction is:
+
+Account: Computer Equipment
+
+Financial dimensions tell you more:
+
+Department: IT  
+Cost Center: Berlin Office   
+Project: ERP Migration 
+Employee: John Smith   
+Business Unit: Europe   
+
+So instead of just seeing:  
+
+Account	Amount  
+Computer Equipment	€15,000  
+
+You see:  
+
+Account	Department	Cost Center	Project	Amount
+Computer Equipment	IT	Berlin	ERP Migration	€15,000
+
+
+Financial dimensions in Dynamics 365 Finance & Operations (D365FO) are attributes you attach to financial transactions to slice and analyze data beyond just the main account number. They let you track "what," "where," and "who" behind a transaction without creating a separate ledger account for every combination.
+
+How they work
+
+A standard chart of accounts entry looks like: MainAccount-Dimension1-Dimension2-...
+
+For example: 600100-001-CC500-P100 might mean:
+
+600100 = main account (e.g., Travel Expense)
+001 = legal entity/company
+CC500 = cost center
+P100 = project
+
+Common dimension types  
+
+Cost Center — which department/team incurred the cost   
+Department — organizational unit   
+Business Unit — division of the company   
+Project — ties spend to a specific project   
+Worker — links to an employee  
+Customer/Vendor — sometimes used as a dimension for reporting   
+
+Some are predefined (built into D365FO) like Department, Cost Center, and Business Unit. Others are user-defined — you can create custom ones (e.g., "Region" or "Product Line") to fit your business.   
+
+Why they matter   
+
+Reporting flexibility — you can run a P&L by cost center, by project, by region, etc., without duplicating main accounts.  
+Account structures & advanced rules — D365FO uses "Account Structures" to define which dimension combinations are valid for a given main account, and "Advanced Rules" to restrict specific values further.  
+Financial dimension sets — used to group dimensions for reporting or security purposes.  
+Default dimensions — you can set defaults at the customer, vendor, item, or worker level so transactions auto-populate the right dimension values.  
+
+![financialdimension](Images/financialdimensions.png)
