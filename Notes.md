@@ -438,3 +438,43 @@ Letters of Credits are : bank documents that are commonly used for the purchase 
 Letters of credit are used for international transactions to ensure that payments will be made.
 
 Letter of Guarantee : It is an agreement by a bank (the guarantor) to pay a set of amount of money to some person (the beneficiary). If a bank customer (the principal) defaults on a payment or an obligation to the beneficiary.
+
+### SUPPLY CHAIN MANAGEMENT AND MANUFACTURING
+
+Product Information Management is where we define the goods and services in the System and then release them in the appropriate legal entities so that they can be transacted.  
+
+Product Information is the backbone of supply chain and retail applications across all industries. It refers to processes and technologies that focus on centrally managing information about products.
+
+![product information](Images/productinformation.png)
+
+A Product is primarily defined by a product number, name and description. However other data is also required to describe a product or service.
+
+![supply chain](Images/supplychain2.png)
+
+Procurement and Sourcing
+______
+ It covers all the steps from 
+  - Identifying a need for product and services
+  - procuring the product 
+  - receiving 
+  - invoicing 
+  - processing the payment with vendors  
+
+Warehouse and Inventory Management
+________
+  - Inbound operations
+  - Quality assurance 
+  - Warehouse operations
+  - Outbound operations
+  - Inventory Control
+
+Production Control
+________
+
+![production control](Images/productioncontrol.png)
+
+![mater planning](Images/masterplanning.png)
+
+Create Production
+
+![create product](Images/createproductind365.png)
