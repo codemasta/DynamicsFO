@@ -503,3 +503,19 @@ You change user interface by for example adding or removing fields to meet a cus
 ![customization and personalization scope](Images/customization_personalization_scope.png)
 
 Use personalization if possible.
+
+Use Options
+
+![user option](/Images/user%20options.png)
+
+![user option page](Images/user%20options%20page.png)
+
+Go to Preference also to do some other settings i.e Company i.e Legal Entities, Initial Page etc.
+
+![Preferences](Images/preferences.png)
+
+Explore the others too i.e Account and Workflow.
+
+Usage Data is where your custom settings in your personalization stays and you can reset it. 
+
+Personalization is what shows up on specific page for the user.
