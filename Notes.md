@@ -1,6 +1,11 @@
 
 DOCUMENTATION : https://learn.microsoft.com/en-us/dynamics365/finance/
 
+MB-500 (Dynamics 365 F&O Developer) – highest priority
+AZ-204 (Azure Developer Associate)
+PL-400 (Power Platform Developer)
+MB-310 (to gain functional finance knowledge)
+
 ![d365 overview](Images/d365overview.png)
 
 It's offered in the Cloud by Microsoft. So each organization is considered as a tenant.
@@ -478,3 +483,23 @@ ________
 Create Production
 
 ![create product](Images/createproductind365.png)
+
+#### CUSTOMIZATION AND PERSONALIZATION
+
+CUSTOMIZATION
+________
+The term customization means that you as a functional consultant have already identified a gap in your customer's requirements, and now you are proposing a solution to created to address the gap within F & O App.
+
+A gap in general is the difference between systems, standard behavior about any subject matter versus the customer's actual need.
+
+In this situation, based on the requirement, you might decide to extend the functionality of F & O apps by perhaps creating new entities, user interfaces, tables and more. That's where the dev identifies the entities that needs to be extended and possibly create new entities to find a solution that address the gap. 
+
+PERSONALIZATION
+________
+You change user interface by for example adding or removing fields to meet a customer's requirement, which may be achieved by using the built in personalization feature of F & O.
+
+![customization and personalization](Images/customization_personalization.png)
+
+![customization and personalization scope](Images/customization_personalization_scope.png)
+
+Use personalization if possible.
