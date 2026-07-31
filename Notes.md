@@ -519,3 +519,30 @@ Explore the others too i.e Account and Workflow.
 Usage Data is where your custom settings in your personalization stays and you can reset it. 
 
 Personalization is what shows up on specific page for the user.
+
+##### RESTRICTED PERSONALIZATION ACCESS (IMPLICIT PERSONALIZATION)
+This means whatever we do to the UI is saved by D365 by default i.e expanding a column view, applied a filter type etc. 
+
+##### FULL PERSONALIZATION ACCESS (EXPLICIT PERSONALIZATION)
+
+![explicit personalization](Images/personalization.png)
+
+When you click on any field i.e the viw column name and right click then you will see *Personalize: [column name]*
+
+So the name shown after the Personalize: [XXXX] is the name of the element in AOS. So if you click on it, it shows you another menu where there are actions. You can hide hide,skip (remove from tab sequence),move to left or right on the view.
+
+![personalize inner](Images/Personalise%20inner.png)
+
+
+We can also go to Option -> Personalize this page, then add a field to add more field we want to show on the table view always
+![option personalize](Images/option%20personalize.png)
+
+![add more](Images/add%20more.png)
+
+We can also add new fields to the DB table via personalization also from the UI , use the *Create new field*
+
+You can also add Power Apps to the Page also by clicking on the last 3 dot on the Personalization pop-up, you can also clear it also. 
+
+We can also Import/Export our Personalize too.
+
+You can also add the Module to the Workspaces. 
