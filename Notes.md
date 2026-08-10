@@ -562,3 +562,14 @@ So if we add a record in it and click publish, it pushes such new data to D365.
 ![excel operations](Images/exceloperations.png)
 
 We add new rows, filter and when we click on Design it allows us to see the Entity backend and also add additional fields not displayed on the Excel. 
+
+
+#### EXCEL WORKBOOK DESIGN   
+
+This functionality can help preselect the column we want to pick out from an Entity rather than the one above that bring out multiple columns. 
+
+We select the Entity and then select the columns we want to pull out from D365, after selecting the columns then select *Create Workbook* to get the data only for the columns we selected. 
+
+![excelworkbookdesigner](Images/excelworkboodesigner.png)
+
+#### LIFE CYCLE SERVICE (LCS)
