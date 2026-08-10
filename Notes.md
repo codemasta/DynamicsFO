@@ -546,3 +546,19 @@ You can also add Power Apps to the Page also by clicking on the last 3 dot on th
 We can also Import/Export our Personalize too.
 
 You can also add the Module to the Workspaces. 
+
+#### EXCEL ADD-IN  
+This feature allows you to load your data into ExcelSheet in 2 different ways.  
+
+1. First scenario is to load or export your data from file into Excel in one way, which is called *STATIC*  
+2. Second scenario is called open in Excel which allows you to load your data from file into Excel and then publish it back from Excel into F&O
+
+![Excel](Images/Excel.png) then click export to Excel. We can also click on the Column Headers and select Export to Excel i.e Export All Rows.
+
+We can also Open In Excel, this means when we download the file, it automatically connects to D365 F&O to pull download the data into it. For this we need to install the Dynamics Add-ins for Excel and sign in before it can pull data from D365.
+
+So if we add a record in it and click publish, it pushes such new data to D365.
+
+![excel operations](Images/exceloperations.png)
+
+We add new rows, filter and when we click on Design it allows us to see the Entity backend and also add additional fields not displayed on the Excel. 
