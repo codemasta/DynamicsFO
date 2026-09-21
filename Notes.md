@@ -572,4 +572,28 @@ We select the Entity and then select the columns we want to pull out from D365, 
 
 ![excelworkbookdesigner](Images/excelworkboodesigner.png)
 
-#### LIFE CYCLE SERVICE (LCS)
+#### LIFE CYCLE SERVICE (LCS)  
+It's a Repository of tools and features that allows you to manage finance and operations apps in the Microsoft Azure Cloud or on premises.
+
+LCS is a cloud based collaboration where all the key information about a project is stored. 
+
+![lcs](Images/lcs.png)
+
+https://lcs.dynamics.com/v2
+
+![lcs home](Images/lcs%20home.png)
+
+Microsoft provides 2 environments  
+Tier Two => UAT also called Pre-Prod  
+Production (with HA)  
+
+Any other environments can be purchased as add-ons.  
+
+Deployment
+_____
+![deployment](Images/deployment.png)
+
+We select the Environment we want to specifically deploy to, then we see the environment details.
+
+![environment details](Images/environment%20details.png)
+
