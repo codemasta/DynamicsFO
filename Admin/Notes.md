@@ -597,3 +597,8 @@ We select the Environment we want to specifically deploy to, then we see the env
 
 ![environment details](Images/environment%20details.png)
 
+### ASSET LIBRARY  
+
+It is a repository for storing various types of artifacts used in an implementation project.  
+
+What is an Environment
