@@ -141,6 +141,31 @@ Reusability : EDTs can be reused in multiple tables and fields, reducing redunda
 
 Better to use an EDT since the functionality can be shared.
 
+The names of extended data types should reflect the real-world items they model.  If the EDT belongs to an application module (such as customers or vendors), the name must be prefixed with the name of the module
+(Cust, Vend and so on).
+
+If it is a data type for identification purposes such as for a key field in a table, the name must be postfixed with "Id". For example, JournalId, CustGroupId and VendId other common postfix terms can also be used, but avoid "Code", "Num" and "Type".
+
+e.g triEmployeeId i.e companyVariableName (best convention)
+
+NOTE : Do not set the Label property to the same value as the HelpText property. The label should be defined at the most generic place, and not be duplicated down the hierarchy.
+
+![edt sample](Images/edt.png)
+
+For EDTEnum, it's best we create a base enum and point the EDT Enum Type we created to it in the Enum Type properties.
+
+![edt enum sample](Images/edtenums.png)
+
+So we can use it directly in the code rather than the primitive types. In real world projects use EDT rather than primitive types. Create an EDT for each atomic entity in the situation that your application is modeling.
+
+Use an extended data type wherever possible.
+
+```x++
+        KokoEmployeeId EmployeeId;
+        KokoEmployeeName employeeName;
+         KokoGender employeeGender = KokoGender::Male;
+```
+
 Get Inputs from Users
 ________
 
@@ -165,3 +190,5 @@ else
     info("Dialog was canceled.");
 }
 ```
+
+The == and != operators are case insensitive in X++ but case sensitive in C# so "Hello" == "hello" is true in X++
