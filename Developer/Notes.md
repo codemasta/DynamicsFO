@@ -192,3 +192,27 @@ else
 ```
 
 The == and != operators are case insensitive in X++ but case sensitive in C# so "Hello" == "hello" is true in X++
+
+Tables
+______
+Tables can also contain metadata, which is descriptive data such as system settings. Developers can modify existing table properties and components through extension, or they can create new tables.  
+
+Tables are made up of fields, which are organized into field groups. 
+
+Fields : Make up the data in the table and can be base enumerations or extended data types.   
+
+Field Groups : Are logical groupings of physical database fields. Groups can be used on forms and reports so that when a modification is made to a field group, related objects are automatically updated to reflect the new content of the group.
+
+Delete Actions : It is used to detail what should happen when data in a related table is deleted. With F&O , delete actions are specified on the properties of a table relation.
+
+State Machines :  enable you to perform state transitions within the workflow without writing any additional code. These are primarily used with workflows.  
+
+Mappings : with a map, you can associate a map field with a field in one or more tables. This enables you to use the same field name to access fields with different names in different tables.  
+
+Methods are pieces of code that are added to a table that can be run when certain events or changes in the data occur. 
+
+Events : are also pieces of code that are raised as preceding and succeeding operations around base methods.
+
+To see all the tables, go to the AOT > Data Model > Tables
+
+So after adding a table, we need to sync the table so it can appear in the DB and then we build the project. After these 2 steps then the table appears.
