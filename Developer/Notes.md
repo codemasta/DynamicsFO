@@ -216,3 +216,77 @@ Events : are also pieces of code that are raised as preceding and succeeding ope
 To see all the tables, go to the AOT > Data Model > Tables
 
 So after adding a table, we need to sync the table so it can appear in the DB and then we build the project. After these 2 steps then the table appears.
+
+LABEL : will be added from a label file.
+
+Table Properties
+_______
+
+ - Title Field1 : This is the key field for the records in the table and use a descriptive title if the key field has the information for the user.
+ - Title Field2 : This is a descriptive field for the records in the table.
+ - Do not set this property if there are not enough fields (according to your needs) in the table. Fields are type real or integer should not be used as title fields.
+ - If the value of TitleField1 and TitleField2 is the same, an error occurs.
+  
+While many properties can be manipulated, only a few will commonly be used.
+
+1. Table Type : Determines if the table is considered a regular database table or a temporary table such as Regular, TempDB or InMemory.  
+2. Name : in a form to display in the user interface as a page, the name is what the user will see on the page. Names and labels should use camel case for consistency, but table names will display in capital letters.
+3. Label : will be added from a label file and is used to identify the table in visual studio
+4. Primary Index: Specifies the field by which the table should be used as the primary index and is used for database optimization purposed.
+5. Cluster Index : Specifies the field by which the table should be organized. This property should never be left blank.
+6. Configuration Key: Allows a system administrator to enable and disable certain of the application and ensures that a table is removed when the key is disabled.
+    ![configuration key](Images/configurationkey.png)
+7. Support Inheritance : Determines whether the table can become a base table by using inheritance. Setting this property to YES indicates that this table can be extended or that it can inherit properties from an existing table.
+8. Extends : used when the support inheritance property is set to YES. The Extends property chooses the base table that will become the parent table to the current table.
+9. Configuration Key: Configuration keys allows administrators to enable or disable features in the application for all users. Disabling an unneeded feature helps to minimize the attack surface against potential attacks.
+10. Table Groups : Table groups provide a method for categorizing tables according to the of data they contain.Determining group membership is not an exact science but more of a conceptual definition. When determining group membership for your own tables, follow the standards in the Microsoft Dynamics AX Application.
+
+Read about TableGroups.
+
+What is Synchronization ? 
+_____
+Synchronize refers to the process of ensuring that the database schema is up to date with the structure defined by the application's data models or code. You can set it to auto synchronize whenever you build the project. So right click on the project then go to properties and set *Synchronize Database* to TRUE.
+
+Read about Table Relations types i.e Normal, Field Fixed, Related Field Fixed
+
+After creating the Relations, we need to set the related table : TblCricketers
+
+![illustration](Images/tableRelationIllustration.png)
+![tblSample](Images/tblsample.png)
+![table relationship](Images/tablerelationship.png)
+![table relationship 2](Images/solution%20explorer.png)
+![table relationship 3](Images/table%20relationship.png)
+![relationship](Images/showtable.png)
+![related field fixed](Images/related%20field%20fixed.png)
+
+
+Data Selection and Manipulation
+______
+
+```x++
+ public static void DataSelection1()
+ {
+     CustTable custTable;
+
+     select firstonly custTable; //this is a short notation for select firstonly * from custTable
+     info(strFmt("Customer account number: %1", custTable.AccountNum));
+ }
+
+ public static void DataSelection2()
+ {
+     CustTable custTable;
+
+     while select firstonly10 custTable
+     {
+         info(strFmt("Customer account number: %1", custTable.AccountNum));
+     }
+ }
+
+```
+
+The select statement fetches or manipulates data from the database. The select statement fetches only one record, or field. To fetch or traverse
+multiple records, you can use the **next** statement or the **while select** statement.
+
+The **next** statement fetches the next record in the table. If you use a next statement, don't use the firstOnly find option. It's more appropriate to use a while select statement to traverse multiple records.
+
+The results of a select statement are returned in a table buffer variable.
