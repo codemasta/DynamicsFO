@@ -284,9 +284,105 @@ ______
 
 ```
 
-The select statement fetches or manipulates data from the database. The select statement fetches only one record, or field. To fetch or traverse
-multiple records, you can use the **next** statement or the **while select** statement.
+The select statement fetches or manipulates data from the database. The select statement fetches only one record, or field. To fetch or traverse multiple records, you can use the **next** statement or the **while select** statement.
 
 The **next** statement fetches the next record in the table. If you use a next statement, don't use the firstOnly find option. It's more appropriate to use a while select statement to traverse multiple records.
 
 The results of a select statement are returned in a table buffer variable.
+
+The next statement fetches the **next record** in the table.
+
+It's more appropriate to use **while select**
+
+Data Insertion
+_______
+
+```x++
+    public static void Insertion1()
+    {
+        KokoEmployeeTable employeeTable;
+
+        ttsbegin;
+        employeeTable.KokoEmployeeId                = 1;
+        employeeTable.FirstName                     = "John";
+        employeeTable.LastName                      = "Doe";
+        employeeTable.EmployeeGender                = GenderMaleFemale::Male;
+        employeeTable.Salary                        = 50000;
+        employeeTable.KokoEmployeeDesignation        = "Software Engineer";
+        employeeTable.insert();
+        ttscommit;
+    }
+```
+
+The insert method inserts one record at a time. It generates values for the RecId field and system fields, and then inserts the contents of the buffer (that is , the column values) into the database.
+
+
+ARRAY
+______
+It can store both homogeneous and heterogeneous data i.e data of same types or different types unlike C# which is homogenous.
+
+Index of an array in X++ starts from 1 and not 0 like C#
+
+```x++
+public void Arrays()
+{
+    int myArray[5]; // fixed-size array with 5 elements
+    myArray[1] = 10;
+    myArray[2] = 20;
+    myArray[3] = 30;
+    myArray[4] = 40;
+    myArray[5] = 50;
+    for (int i = 1; i <= 5; i++)
+    {
+        info(strFmt("Element %1: %2", i, myArray[i]));
+    }
+
+    // OR dimOf() function can be used to get the size of the array if the array is declared with a fixed size.
+    for (int i = 1; i <= dimOf(myArray); i++)
+    {
+        info(strFmt("Element %1: %2", i, myArray[i]));
+    }
+} 
+```
+
+dimOf() function is intended for X++ arrays that are declared as the following X++ primitive types only.
+- boolean
+- date
+- int
+- int64
+- real
+- utcDatetime
+
+Array is a composite data type useful for aggregating values of primitive data type.
+
+
+Collection Class
+______
+Collection classes are used to store objects. They let you create array,list,map and structure that can hold any kind of data type. 
+
+Collection classes have dynamic size while native x++ requires a fixed size and sizing them can be less convenient.
+
+Collection classes allows you to create collections that store a variety of data types within the same array while native array are typically homogeneous and meaning they store element of the same data type. 
+
+Collection class comes with lots built-in methods. They are most compatible with certain scenario or libraries. 
+
+Try to use the collection classes.
+
+```x++
+ public void Collections_Arrays()
+ {
+     Array myArray = new Array(Types::Integer);
+     myArray.value(1, 10);
+     myArray.value(2, 20);
+     myArray.value(3, 30);
+
+     //  accessing elements using the value() method
+     info(strFmt("Element 1: %1", myArray.value(1)));
+
+     for (int i = 1; i <= myArray.lastIndex(); i++)
+     {
+         info(strFmt("Element %1: %2", i, myArray.value(i)));
+     }
+ }
+
+```

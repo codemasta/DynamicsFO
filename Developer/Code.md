@@ -8,7 +8,8 @@ internal final class RunnableClass
     /// <param name = "_args">The specified arguments.</param>
     public static void main(Args _args)
     {
-        RunnableClass::GettingTime();
+        // RunnableClass::GettingTime();
+        RunnableClass::Insertion1();
     }
 
     public static void DeclareVariables()
@@ -101,6 +102,71 @@ internal final class RunnableClass
         currentTime = DateTimeUtil::utcNow();
 
         info(strFmt("Current UTC Date and time: %1", currentTime));
+    }
+
+    public static void DataSelection1()
+    {
+        CustTable custTable;
+
+        select firstonly custTable; //this is a short notation for select firstonly * from custTable
+        info(strFmt("Customer account number: %1", custTable.AccountNum));
+    }
+
+    public static void DataSelection2()
+    {
+        CustTable custTable;
+
+        while select firstonly10 custTable
+        {
+            info(strFmt("Customer account number: %1", custTable.AccountNum));
+        }
+    }
+
+    public static void DataSelectionWithNext()
+    {
+        CustTable custTable;
+
+        select custTable;
+         
+        info(strFmt("Customer account number: %1", custTable.AccountNum));
+
+        next custTable;
+        info(strFmt("Customer account number: %1", custTable.AccountNum));
+
+        next custTable;
+        info(strFmt("Customer account number: %1", custTable.AccountNum));
+
+        next custTable;
+        info(strFmt("Customer account number: %1", custTable.AccountNum));
+    }
+
+    public static void DataSelection3All()
+    {
+        CustTable custTable;
+        select * from custTable;
+        info(strFmt("Customer account number: %1", custTable.AccountNum));
+    }
+
+    public static void DataSelection3Specific()
+    {
+        CustTable custTable;
+        select AccountNum, CustGroup from custTable;
+        info(strFmt("Customer account number: %1, Customer group: %2", custTable.AccountNum, custTable.CustGroup));
+    }
+
+    public static void Insertion1()
+    {
+        KokoEmployeeTable employeeTable;
+
+        ttsbegin;
+        employeeTable.KokoEmployeeId                = 1;
+        employeeTable.FirstName                     = "John";
+        employeeTable.LastName                      = "Doe";
+        employeeTable.EmployeeGender                = GenderMaleFemale::Male;
+        employeeTable.Salary                        = 50000;
+        employeeTable.KokoEmployeeDesignation       = "Software Engineer";
+        employeeTable.insert();
+        ttscommit;
     }
 
 }
