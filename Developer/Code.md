@@ -169,5 +169,83 @@ internal final class RunnableClass
         ttscommit;
     }
 
+    public void Arrays()
+    {
+        int myArray[5]; // fixed-size array with 5 elements
+        myArray[1] = 10;
+        myArray[2] = 20;
+        myArray[3] = 30;
+        myArray[4] = 40;
+        myArray[5] = 50;
+        for (int i = 1; i <= 5; i++)
+        {
+            info(strFmt("Element %1: %2", i, myArray[i]));
+        }
+
+        // OR dimOf() function can be used to get the size of the array if the array is declared with a fixed size.
+        for (int i = 1; i <= dimOf(myArray); i++)
+        {
+            info(strFmt("Element %1: %2", i, myArray[i]));
+        }
+    }
+
+    public void Collections_Arrays()
+    {
+        Array myArray = new Array(Types::Integer);
+        myArray.value(1, 10);
+        myArray.value(2, 20);
+        myArray.value(3, 30);
+
+        //  accessing elements using the value() method
+        info(strFmt("Element 1: %1", myArray.value(1)));
+
+        for (int i = 1; i <= myArray.lastIndex(); i++)
+        {
+            info(strFmt("Element %1: %2", i, myArray.value(i)));
+        }
+    }
+
+    public void Containers()
+    {
+        container myContainer = ["John", 30, true];
+        str name = conPeek(myContainer, 1);
+        int age = conPeek(myContainer, 2);
+        boolean isActive = conPeek(myContainer, 3);
+        info(strFmt("Name: %1, Age: %2, Active: %3", name, age, isActive));
+    }
+
+    public void ContainerOperations()
+    {
+        container myContainer = ["John", 30, true];
+        info(strFmt("Container: %1", con2Str(myContainer)));
+
+        // Adding an element to the container
+        myContainer += "New Element";
+        info(strFmt("Updated Container: %1", con2Str(myContainer)));
+
+        // Removing an element from the container
+        myContainer = conDel(myContainer, 2, 1); // Remove one element at position 2
+        info(strFmt("After Removal: %1", con2Str(myContainer)));
+
+        myContainer = conIns(myContainer, 2, "Inserted Element"); // Insert at position 2
+        info(strFmt("After Insertion: %1", con2Str(myContainer)));
+
+        myContainer = conPoke(myContainer, 1, "Updated Name"); // Update element at position 1
+        info(strFmt("After Update: %1", con2Str(myContainer)));
+
+        boolean isActive = conPeek(myContainer, 3); // Peek at position 3
+        info(strFmt("Peeked Element: %1", isActive));
+
+        str myStr;
+        int myInt;
+        [myStr, myInt] = myContainer; // Unpacking the container into variables
+        info(strFmt("Unpacked Name: %1, Unpacked Age: %2", myStr, myInt));
+
+        for (int i = 1; i <= conLen(myContainer); i++)
+        {
+            info(strFmt("Element %1: %2", i, conPeek(myContainer, i)));
+        }
+    }
+
 }
 ```

@@ -386,3 +386,28 @@ Try to use the collection classes.
  }
 
 ```
+
+CONTAINER
+______
+
+![Container](Images/container.png)
+
+It's a composite data type.
+
+Container stores many elements of different data types. However there are few limitations with Containers like "container cannot store objects" and "performance implications" and they can be addressed by collection classes and temporary table concepts. Containers are most frequently used in AX development so let us explore Containers and its features.
+
+- In X++, container is one of the primitive types or value types. Container is not a class
+- A container is a composite data type
+- A container is a dynamic list of items containing primitive data types and/or some composite data types.
+- A container contains an ordered sequence of primitive values or other containers. 
+- A container can be stored in the database. Container is one of the column types that you can select when you use the AOT to add a column to a table.
+- A container slightly resembles an array or collections such as the List or Stack classes. However, you can never change the size or content of a container after the container is created.
+- A container is 1 based not 0 based. Indexing is 1 based for arrays and for everything else in X++
+- A container is not a class therefore classes/objects cannot be passed/put into a container
+- A container contains an ordered sequence of values (primitive data types - int, str, real, date, Boolean, enums etc) or other containers or/and some composite data types.
+- A container is a "PASS BY VALUE" types not "PASS BY REFERENCE" type which means while passing container the copy of container with values is passed not the reference.
+- A container is IMMUTABLE which means a container is never modified with any functions rather all X++ statements acting on a container are internally building a new container. In a simple terms we can say X++ statements that appear to modify a container are internally building a new container and copying values as necessary. Even an assignment of a container to another container variable creates a new copy of the container. 
+
+For example assignment of a container to another container variable and container functions such as *conIns()*, *conDel()*, *conPoke()*, += etc. are actually creating a new copy of the container. 
+
+![container sample](Images/containersamples.png)
