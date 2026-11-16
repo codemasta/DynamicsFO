@@ -9,7 +9,7 @@ internal final class RunnableClass
     public static void main(Args _args)
     {
         // RunnableClass::GettingTime();
-        RunnableClass::Insertion1();
+        RunnableClass::ContainerOperations();
     }
 
     public static void DeclareVariables()
@@ -169,7 +169,7 @@ internal final class RunnableClass
         ttscommit;
     }
 
-    public void Arrays()
+    public static void Arrays()
     {
         int myArray[5]; // fixed-size array with 5 elements
         myArray[1] = 10;
@@ -189,7 +189,7 @@ internal final class RunnableClass
         }
     }
 
-    public void Collections_Arrays()
+    public static void Collections_Arrays()
     {
         Array myArray = new Array(Types::Integer);
         myArray.value(1, 10);
@@ -214,8 +214,10 @@ internal final class RunnableClass
         info(strFmt("Name: %1, Age: %2, Active: %3", name, age, isActive));
     }
 
-    public void ContainerOperations()
+    public static void ContainerOperations()
     {
+        setPrefix("Container Operations"); // Set a prefix for the info messages to make them easier to identify in the Infolog
+
         container myContainer = ["John", 30, true];
         info(strFmt("Container: %1", con2Str(myContainer)));
 
@@ -230,10 +232,13 @@ internal final class RunnableClass
         myContainer = conIns(myContainer, 2, "Inserted Element"); // Insert at position 2
         info(strFmt("After Insertion: %1", con2Str(myContainer)));
 
+        myContainer = conIns(myContainer, 4, 42, 56, "Boy"); //  insert multiple elements at position 4
+        info(strFmt("After Insertion: %1", con2Str(myContainer, ','))); // display the container elements separated by a comma
+
         myContainer = conPoke(myContainer, 1, "Updated Name"); // Update element at position 1
         info(strFmt("After Update: %1", con2Str(myContainer)));
 
-        boolean isActive = conPeek(myContainer, 3); // Peek at position 3
+        boolean isActive = conPeek(myContainer, 3); // Peek at position 3, get the value without removing it
         info(strFmt("Peeked Element: %1", isActive));
 
         str myStr;
@@ -245,6 +250,58 @@ internal final class RunnableClass
         {
             info(strFmt("Element %1: %2", i, conPeek(myContainer, i)));
         }
+
+        int position = conFind(myContainer, "Inserted Element"); // Find the position of an element
+        info(strFmt("Position of 'Inserted Element': %1", position));
+
+        str rolesString = "Admin,User,Manager";
+        container rolesContainer = str2con(rolesString, ','); // Convert string to container using comma as delimiter
+        info(strFmt("Roles Container: %1", con2Str(rolesContainer, ',')));
+
+        // or 
+
+        for (int i = 1; i <= conLen(rolesContainer); i++)
+        {
+            info(strFmt("Role %1: %2", i, conPeek(rolesContainer, i)));
+        }
+    }
+
+    public static void Lists()
+    {
+        List myList = new List(Types::String); // Create a list to hold string values
+        myList.addStart("Item 0");
+        myList.addEnd("Item 1");
+        myList.addEnd("Item 2");
+        myList.addEnd("Item 3");
+    
+        Enumerator enumerator = myList.getEnumerator();
+        while (enumerator.moveNext())
+        {
+            str element = enumerator.current();
+            info(strFmt("List Item: %1", element));
+        }   
+    }
+
+    public static void RecordInsertList()
+    {
+        KokoEmployeeTable employeeTable;
+        RecordInsertList insertList = new RecordInsertList(tableNum(KokoEmployeeTable)); // allows you to insert multiple records into a table in a single transaction.
+
+        for (int i = 1; i <= 5; i++)
+        {
+            // create a new record and set its fields
+            employeeTable.KokoEmployeeId = i;
+            employeeTable.FirstName = strFmt("FirstName%1", i);
+            employeeTable.LastName = strFmt("LastName%1", i);
+            employeeTable.EmployeeGender = GenderMaleFemale::Male;
+            employeeTable.Salary = 50000 + (i * 1000);
+            employeeTable.KokoEmployeeDesignation = strFmt("Designation%1", i);
+
+            // Add the record to the RecordInsertList
+            insertList.add(employeeTable);
+        }
+
+        insertList.insertDatabase(); // Insert all records in a single transaction
     }
 
 }

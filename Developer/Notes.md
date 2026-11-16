@@ -129,6 +129,8 @@ Extended Data Type
 _______
 These are also called User Defined types based on the primitive data types boolean,integer, real, string and date and the composite type Container.
 
+Composite data types are for aggregating data for primitive types. 
+
 Using descriptive EDTs can enhance code readability. For instance, instead of using a generic string data type for a field that represents postal codes, you can create an EDT named "PostalCode" to make your code more self-explanatory.
 
 Readability 
@@ -411,3 +413,204 @@ Container stores many elements of different data types. However there are few li
 For example assignment of a container to another container variable and container functions such as *conIns()*, *conDel()*, *conPoke()*, += etc. are actually creating a new copy of the container. 
 
 ![container sample](Images/containersamples.png)
+
++= is faster than the conIns() function, however note that it inserts at the end after last index location. Therefore use this operation when insertion has no relevance to index position especially used in loops. 
+
+LIST
+_____
+
+Allows you to store manage a collection of items or elements of the same type.
+
+RECORDINSERTLIST
+______
+It allow you to efficiently insert multiple record into a single database operation. RecordInsertList is a powerful X++ class that allows you to efficiently insert multiple records into a single database operation.
+
+This can significantly improve performance compared to inserting records one by one especially for large datasets.
+
+SET
+____
+Set object is stored the value in a manner that optimizes the performance for each method. So it's like Math sets, where we have methods like union, intersect, in.
+
+```x++
+ Set mySet = new Set(Types::String)
+```
+
+```
+ Set::union(setA, setB);-
+```
+
+For SET objects, if any elements are added or removed after an iterator is created, the iterator instance can no longer be used to read from or step through the collection. 
+
+MAP
+_____
+The Map class lets to associate one value (the key) with another value.
+
+A Map in X++ stores key/value pairs. Keys are unique, and adding an existing key overwrites its value.
+
+
+```X++
+Map map = new Map(Types::String, Types::Integer);   // key type, value type
+
+map.insert("A", 1);                 // add or overwrite
+map.insert("B", 2);
+
+if (map.exists("A"))                // check key
+    info(int2Str(map.lookup("A"))); // get value (errors if key missing)
+
+map.remove("B");                    // delete by key
+
+// Iterate
+MapEnumerator me = map.getEnumerator();
+while (me.moveNext())
+{
+    info(strFmt("%1 = %2", me.currentKey(), me.currentValue()));
+}
+```
+
+Types: both key and value types are set in the constructor (Types::String, Types::Integer, Types::Class, Types::Record, and so on).   
+
+Lookup: lookup() throws an error if the key doesn’t exist, so check exists() first.  
+
+Order: don’t rely on any order when enumerating.   
+
+Removing while iterating: avoid it. Collect the keys first, then remove them after the loop.  
+
+Other methods: elements() returns the count, keys() returns a Set of the keys, and insert() on an existing key replaces the old value.  
+
+Common uses: caching lookups such as CustTable values, grouping or aggregating data, and passing parameters. Map is also used with Types::Record for record caching.  
+
+Also for Map objects, as for Set objects, if any elements are removed, the iterator is no longer valid.
+
+Map to a Class.
+
+```x++
+class MyCustInfo
+{
+    CustAccount accountNum;
+    Amount      balance;
+}
+
+Map          map = new Map(Types::String, Types::Class);
+MyCustInfo   info1 = new MyCustInfo();
+
+info1.accountNum = "C001";
+map.insert("C001", info1);
+
+// Retrieve (cast back to the class)
+MyCustInfo found;
+if (map.exists("C001"))
+{
+    found = map.lookup("C001") as MyCustInfo;
+}
+
+// Iterate
+MapEnumerator me = map.getEnumerator();
+while (me.moveNext())
+{
+    MyCustInfo obj = me.currentValue() as MyCustInfo;
+    info(obj.accountNum);
+}
+```
+
+CONSTRUCTORS
+______
+
+In X++, the name of the constructor can't be same name as the class name unlike in C#. The constructor name in X++ is **new**.
+
+
+```x++
+ class Person
+ {
+    str firstName;
+    str lastName;
+
+    public void new(str _firstName, str _lastName)
+    {
+       firstName = _firstName;
+       lastName  = _lastName;     
+    }
+ }
+```
+
+```x++
+internal final class Person
+{
+    str firstName;
+    str lastName;
+
+    public void new(str _firstName, str _lastName)
+    {
+        firstName = _firstName;
+        lastName = _lastName;
+    }
+
+    // constructor another way to create a constructor
+    public static Person construct(str _firstName, str _lastName)
+    {
+        Person person = new Person(_firstName, _lastName);
+        return person;
+    }
+
+    // method
+    public void Person(str _firstName, str _lastName)
+    {
+        firstName = _firstName;
+        lastName = _lastName;
+    }
+}
+
+```
+
+X++ does not supports constructor overloading, which means you can't define multiple constructors with different parameter lists. This provides 
+flexibility when creating objects.
+
+Advanced.
+```x++
+class MyCustInfo
+{
+    CustAccount accountNum;
+    Amount      balance;
+
+    // Constructor: keep it protected
+    protected void new()
+    {
+    }
+
+    // Static construct: the public entry point
+    public static MyCustInfo construct()
+    {
+        return new MyCustInfo();
+    }
+
+    // Static new-style method when parameters are needed
+    public static MyCustInfo newFromAccount(CustAccount _accountNum)
+    {
+        MyCustInfo info = MyCustInfo::construct();
+        info.parmAccountNum(_accountNum);
+        return info;
+    }
+
+    public CustAccount parmAccountNum(CustAccount _accountNum = accountNum)
+    {
+        accountNum = _accountNum;
+        return accountNum;
+    }
+}
+
+// Usage
+MyCustInfo info = MyCustInfo::newFromAccount("C001");
+```
+
+No overloading: X++ doesn’t support constructor overloading. Use differently named static methods (newFromAccount, newFromRecord) for different inputs.  
+
+new() is protected: this forces callers to use the static methods, so you can validate input, return a subclass, or change creation logic later without breaking callers.   
+
+construct(): takes no parameters and just returns new ClassName(). It is also where you can pick a subclass (a factory pattern).  
+
+parm methods: set values after construction, via parm accessors (which act as both getter and setter).  
+
+Inheritance: call super() in a subclass new() if it needs to run the parent constructor logic.  
+
+Extension: a protected new() plus construct() also works well with Chain of Command, because construct() is easier to wrap than a direct new. 
+
+Framework classes: RunBase/SysOperation classes follow the same pattern, with construct() plus main() as the entry point.  
