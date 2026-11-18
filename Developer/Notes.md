@@ -614,3 +614,152 @@ Inheritance: call super() in a subclass new() if it needs to run the parent cons
 Extension: a protected new() plus construct() also works well with Chain of Command, because construct() is easier to wrap than a direct new. 
 
 Framework classes: RunBase/SysOperation classes follow the same pattern, with construct() plus main() as the entry point.  
+
+METHODS
+_____
+
+```x++
+public class Person
+{
+    str firstName;
+    str lastName;
+
+    protected void methodProtected()
+    {
+        info("This is a protected method.");
+    }
+
+    public void methodProtected1()
+    {
+        info("This is a protected method.");
+    }
+
+    protected void methodProtectedWithParameters(str _param1, int _param2)
+    {
+        info(strFmt("This is a protected method with parameters: %1, %2", _param1, _param2));
+    }
+
+    protected int methodProtectedWithReturnValue(int _a, int _b)
+    {
+        int c = _a + _b;
+        return c;
+    }
+
+}
+
+public class Developer extends Person
+{
+   public void methodProtected1()
+   {
+       // the super keyword is used to call the method from the parent class (Person) else it will call the method from the current class (Developer)
+       super();
+       info("This is a public method from the Developer class.");
+   }
+
+    public void methodProtected()
+    {
+        // no super keyword is used here, so it will call the method from the current class (Developer)
+        info("This is a public method from the Developer class.");
+    }
+
+}
+```
+
+**X++ and method overloading**
+
+X++ does not support method overloading. A class can't have two methods with the same name and different parameter lists, and doing so is a compile error.
+
+Workarounds:
+- Use default parameter values, e.g. `void process(str _name, int _qty = 1)`.
+- Use distinct method names, e.g. `processByCustomer()` and `processByVendor()`.
+- Pass a contract or parameter class that holds the optional values.
+
+**Overriding**
+
+A subclass can override a base-class method if the name and signature match exactly.
+
+```xpp
+class BaseCalculator
+{
+    public real calcTax(real _amount)
+    {
+        return _amount * 0.10;
+    }
+}
+
+class DeCalculator extends BaseCalculator
+{
+    // Overrides the base method: same name and signature
+    public real calcTax(real _amount)
+    {
+        return _amount * 0.19;
+    }
+}
+
+// Usage
+BaseCalculator calc = new DeCalculator();
+info(strFmt("%1", calc.calcTax(100)));   // 19, resolved at runtime
+```
+
+To extend the base logic instead of replacing it, call `super()`:
+
+```xpp
+public real calcTax(real _amount)
+{
+    real baseTax = super(_amount);
+    return baseTax + 5;   // add a surcharge on top of the base result
+}
+```
+
+Chain of Command (`[ExtensionOf]` with `next`) wraps an existing method. It is extension, not overloading.
+
+ABSTRACT
+_____
+
+![abstract class](Images/abstract.png)
+
+abstract class VehicleAbstractClass
+{
+    str owner = "Seun";
+    int age   = 30;
+
+   
+    public void new(str _owner, int _age)
+    {
+        owner = _owner;
+        age = _age;
+        info(strFmt("Owner: %1, Age: %2", owner, age));
+    }
+
+   public void printInfo()
+   {
+       info(strFmt("Owner: %1, Age: %2", owner, age));
+   }
+
+   // Abstract method that must be implemented by derived classes
+    abstract void startEngine(){}
+
+} 
+```
+
+Implementing the Abstract class
+
+```xpp
+class Car extends VehicleAbstractClass
+{
+    str model;
+    public void new(str _owner, int _age, str _model)
+    {
+        super(_owner, _age);
+        model = _model;
+        info(strFmt("Model: %1", model));
+    }
+
+    // Implement the abstract method from the base class
+    public void startEngine()
+    {
+        info("Car engine started.");
+    }
+
+}
+```

@@ -214,6 +214,11 @@ internal final class RunnableClass
         info(strFmt("Name: %1, Age: %2, Active: %3", name, age, isActive));
     }
 
+    public static void Prefix(str _prefix)
+    {
+        setPrefix(_prefix);
+    }
+
     public static void ContainerOperations()
     {
         setPrefix("Container Operations"); // Set a prefix for the info messages to make them easier to identify in the Infolog
@@ -302,6 +307,35 @@ internal final class RunnableClass
         }
 
         insertList.insertDatabase(); // Insert all records in a single transaction
+    }
+
+    public static void StringSplitter()
+    {
+        str sourceString = "apple,banana,orange";
+        str delimiter = ",";
+        List myList = new List(Types::String);
+        myList = Global::strSplit(sourceString, delimiter);
+        Enumerator enumerator = myList.getEnumerator();
+        while (enumerator.moveNext())
+        {
+            str element = enumerator.current();
+            info(strFmt("List Item: %1", element));
+        }
+    }
+
+    public static void Set()
+    {
+        Set mySet = new Set(Types::String); // Create a set to hold string values
+        mySet.add("Item 1");
+        mySet.add("Item 2");
+        mySet.add("Item 3");
+
+        SetEnumerator enumerator = mySet.getEnumerator();
+        while (enumerator.moveNext())
+        {
+            str element = enumerator.current();
+            info(strFmt("Set Item: %1", element));
+        }
     }
 
 }
