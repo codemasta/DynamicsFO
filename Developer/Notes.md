@@ -913,3 +913,102 @@ Executed when a field is modified in a form or Web form. Use this instead of pla
 ```x++
 public void modifiedField(FieldId fieldId)
 ```
+
+```x++
+public class KokoEmployeeTable extends common
+{
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name = "_fieldId"></param>
+    public void modifiedField(FieldId _fieldId)
+    {
+        info(strFmt("%1", _fieldId)); // you will be able to see the Id like 1,2,3
+        info(strFmt("Field modified: %1", fieldId2Name(this.TableId, _fieldId))); // you will be able to see the name of the field modified like FirstName, LastName, Salary, EmployeeGender
+
+        super(_fieldId);
+
+        switch(_fieldId)
+        {
+            case fieldNum(KokoEmployeeTable, EmployeeGender):
+                info(strFmt("Employee Gender: %1", this.EmployeeGender));
+                if(this.EmployeeGender == GenderMaleFemale::Male)
+                {
+                    this.Salary = 1000;
+                }
+                
+                if(this.EmployeeGender == GenderMaleFemale::Female)
+                {
+                    this.Salary = 500;
+                }
+                break;
+              
+        }
+    }
+
+}
+```
+
+**modifiedFieldValue** Method
+______
+
+Executed when a field is modified in a form or Web form. Use this instead of placing code on the form.
+
+Each time the value of a field is changed the method modifiedFieldValue() is called. It is useful to initialize the values of other fields if the value of the current field is changed.
+
+The code in the modifiedFieldValue method is executed without writing into the DB.
+
+The modifiedFieldValue method only executes if validation returns true. 
+
+```x++
+public void modifiedFieldValue(FieldName fieldName, [int arrayIndex])
+```
+
+
+```x++
+public class KokoEmployeeTable extends common
+{
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name = "_fieldName"></param>
+    /// <param name = "_arrayIndex"></param>
+    public void modifiedFieldValue(FieldName _fieldName, int _arrayIndex = 1)
+    {
+        super(_fieldName, _arrayIndex);
+        info(strFmt("Field modified: %1", _fieldName)); // you will be able to see the name of the field modified like FirstName, LastName, Salary, EmployeeGender
+        super(_fieldName, _arrayIndex);
+
+        switch(_fieldName)
+        {
+            case fieldStr(KokoEmployeeTable, EmployeeGender):
+                info(strFmt("Employee Gender: %1", this.EmployeeGender));
+                if(this.EmployeeGender == GenderMaleFemale::Male)
+                {
+                    this.Salary = 1000;
+                }
+                
+                if(this.EmployeeGender == GenderMaleFemale::Female)
+                {
+                    this.Salary = 500;
+                }
+                break;
+              
+        }
+    }
+
+}
+```
+
+**validateField** Method
+______
+
+Determines whether the specified field is valid. Method validateField() is used for validation only and will return true or false.
+
+If the return value is false, the application user will be prevented to continue changing a field value.
+
+```x++
+public boolean validateField(FieldId fieldIdToCheck)
+```
+
+![check failed](Images/checkFailed.png)
