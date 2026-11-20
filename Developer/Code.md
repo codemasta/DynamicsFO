@@ -340,3 +340,72 @@ internal final class RunnableClass
 
 }
 ```
+
+
+
+
+```x++
+public class KokoEmployeeTable extends common
+{
+    /// <summary>
+    /// Determines if concurrent deletes should throw exception.
+    /// </summary>
+    /// <returns>true, if exception should be thrown; otherwise, false.</returns>
+    public boolean shouldThrowExceptionOnZeroDelete()
+    {
+        return true;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public void initValue()
+    {
+        super();
+
+        this.Salary = 1000;
+        this.FirstName = "Sola";
+        this.LastName = "Oluwaseun";    
+        this.EmployeeGender = GenderMaleFemale::Male;
+
+        if(this.EmployeeGender == GenderMaleFemale::Male)
+        {
+            this.Salary = 1000;
+        }
+        else
+        {
+            this.Salary = 500;
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name = "_fieldId"></param>
+    public void modifiedField(FieldId _fieldId)
+    {
+        info(strFmt("%1", _fieldId)); // you will be able to see the Id like 1,2,3
+        info(strFmt("Field modified: %1", fieldId2Name(this.TableId, _fieldId))); // you will be able to see the name of the field modified like FirstName, LastName, Salary, EmployeeGender
+
+        super(_fieldId);
+
+        switch(_fieldId)
+        {
+            case fieldNum(KokoEmployeeTable, EmployeeGender):
+                info(strFmt("Employee Gender: %1", this.EmployeeGender));
+                if(this.EmployeeGender == GenderMaleFemale::Male)
+                {
+                    this.Salary = 1000;
+                }
+                
+                if(this.EmployeeGender == GenderMaleFemale::Female)
+                {
+                    this.Salary = 500;
+                }
+                break;
+              
+        }
+    }
+
+}
+```

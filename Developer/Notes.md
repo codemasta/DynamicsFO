@@ -18,6 +18,14 @@ Reading : https://learn.microsoft.com/en-us/training/paths/introduction-develop-
 
 MB-500 (Developer Exam) : https://learn.microsoft.com/en-us/credentials/certifications/d365-finance-and-operations-apps-developer-associate/?practice-assessment-type=certification
 
+https://www.youtube.com/@peterramer
+
+Short Hours : https://www.udemy.com/course/fundamentals-for-d365-fo/learn/lecture/54409619#overview
+
+https://learn.microsoft.com/en-us/training/modules/get-started-xpp-finance-operations/
+
+https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/get-started/videos
+
 FDD : Functional Design Document.
 
 What is FDD ? 
@@ -678,7 +686,7 @@ Workarounds:
 
 A subclass can override a base-class method if the name and signature match exactly.
 
-```xpp
+```x++
 class BaseCalculator
 {
     public real calcTax(real _amount)
@@ -703,7 +711,7 @@ info(strFmt("%1", calc.calcTax(100)));   // 19, resolved at runtime
 
 To extend the base logic instead of replacing it, call `super()`:
 
-```xpp
+```x++
 public real calcTax(real _amount)
 {
     real baseTax = super(_amount);
@@ -744,7 +752,7 @@ abstract class VehicleAbstractClass
 
 Implementing the Abstract class
 
-```xpp
+```x++
 class Car extends VehicleAbstractClass
 {
     str model;
@@ -762,4 +770,146 @@ class Car extends VehicleAbstractClass
     }
 
 }
+```
+
+INTERFACES
+______
+Interfaces
+
+An interface declares method signatures only, written with an empty body {}. Every method is public. Any implementing class must provide all of them with the exact same signature. The same no-overloading rule applies, so an interface can’t declare two methods with the same name.
+
+```x++
+interface ITaxCalculator
+{
+    public real calcTax(real _amount) {}
+}
+
+class DeTaxCalculator implements ITaxCalculator
+{
+    public real calcTax(real _amount)
+    {
+        return _amount * 0.19;
+    }
+}
+
+class FrTaxCalculator implements ITaxCalculator
+{
+    public real calcTax(real _amount)
+    {
+        return _amount * 0.20;
+    }
+}
+
+// Usage: program against the interface, not the concrete class
+ITaxCalculator calc = new DeTaxCalculator();
+info(strFmt("%1", calc.calcTax(100)));   // 19
+
+```
+
+A class can extend one base class and implement several interfaces:
+
+x++
+class MyCalc extends BaseCalculator implements ITaxCalculator, SysPackable
+
+Chain of Command ([ExtensionOf] with next) wraps an existing method. It is extension, not overloading.
+
+![interface](Images/interface.png)
+
+TABLE METHODS
+____________
+![table methods](Images/table%20method.png)
+
+There are 2 types of tables in D365FO, STANDARD tables (already existing tables in the D365FO) and CUSTOM tables (created by us). Tables have methods and we can create our own methods or override existing methods.
+
+In Microsoft Dynamics 365 FO, table methods are used to perform specific operations on a table. They are defined within the table itself and can be called from any other object within the application.
+
+Table methods can be used to perform tasks such as data validation, calculations and database operations. They are often used in combination with form methods and class methods to provide functionality to the user interface and business logic of the application.
+
+The base class of all tables is common in X++
+
+```x++
+public class KokoEmployeeTable extends common
+{
+    /// <summary>
+    /// Determines if concurrent deletes should throw exception.
+    /// </summary>
+    /// <returns>true, if exception should be thrown; otherwise, false.</returns>
+    public boolean shouldThrowExceptionOnZeroDelete()
+    {
+        return true;
+    }
+
+}
+```
+
+**initValue** Method
+______
+
+initializes a field to the default value. If we create a new record from the table browser or a form the table method initValue() is executed.
+
+```x++
+public void initValue()
+```
+
+```x++
+public class KokoEmployeeTable extends common
+{
+    /// <summary>
+    ///
+    /// </summary>
+    public void initValue()
+    {
+        super();
+
+        this.Salary = 1000;
+        this.FirstName = "Sola";
+        this.LastName = "Oluwaseun";    
+        this.EmployeeGender = GenderMaleFemale::Male;
+    }
+
+}
+```
+
+
+```x++
+public class KokoEmployeeTable extends common
+{
+    /// <summary>
+    ///
+    /// </summary>
+    public void initValue()
+    {
+        super();
+
+        //this.Salary = 1000;
+        //this.FirstName = "Sola";
+        //this.LastName = "Oluwaseun";    
+        //this.EmployeeGender = GenderMaleFemale::Male;
+
+        // OR we can also apply conditions to the initValue method as shown below
+        if(this.EmployeeGender == GenderMaleFemale::Male)
+        {
+            this.Salary = 1000;
+        }
+        else
+        {
+            this.Salary = 500;
+        }
+    }
+
+}
+
+```
+
+Then sync the DB , build it and you can open table browser on the table to see it in actions.
+
+
+**modifiedField** Method
+______
+
+Executed when a field is modified in a form or Web form. Use this instead of placing code on the Form control/form data source field. Each time the value of a field is changed the method modifiedFiled() is called. It is useful to initializer the values of other fields if the value of the current field is changed.
+
+
+```x++
+public void modifiedField(FieldId fieldId)
 ```
