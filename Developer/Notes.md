@@ -1012,3 +1012,40 @@ public boolean validateField(FieldId fieldIdToCheck)
 ```
 
 ![check failed](Images/checkFailed.png)
+
+```x++
+public class KokoEmployeeTable extends common
+{
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name = "_fieldIdToCheck"></param>
+    /// <returns></returns>
+    public boolean validateField(FieldId _fieldIdToCheck)
+    {
+        boolean ret;
+    
+        ret = super(_fieldIdToCheck);
+
+        switch(_fieldIdToCheck)
+        {
+            case fieldNum(KokoEmployeeTable, FirstName):
+                if(strLen(this.FirstName) < 3)
+                {
+                    ret = checkFailed(strFmt("First Name must be at least 3 characters long. Current length: %1", strLen(this.FirstName))); 
+                }
+                break;
+
+            case fieldNum(KokoEmployeeTable, Salary):
+                if(this.Salary < 0)
+                {
+                    ret = checkFailed(strFmt("Salary must be a positive number. Current value: %1", this.Salary)); 
+                }
+                break;
+        }
+    
+        return ret;
+    }
+
+}
+```
