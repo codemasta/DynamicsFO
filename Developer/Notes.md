@@ -26,6 +26,9 @@ https://learn.microsoft.com/en-us/training/modules/get-started-xpp-finance-opera
 
 https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/get-started/videos
 
+
+Develop an entity and enable it for data export => https://learn.microsoft.com/en-us/training/modules/integration-concepts-finance-operations/2-entity
+
 FDD : Functional Design Document.
 
 What is FDD ? 
@@ -1049,3 +1052,91 @@ public class KokoEmployeeTable extends common
 
 }
 ```
+
+FIND 
+_________
+The find() method is a custom method that's usually created with all tables.   
+It returns a specific record based on primary key or other unique keys.  
+It is a static method.  
+Provides a convenient and efficient way to locate a specific records for further operations (reading, updating or deleting)
+
+For example in the InventSite table on the AOT
+
+```x++
+    static public InventSite find(
+        InventSiteId  _inventSiteId,
+        boolean       _update = false)
+    {
+        InventSite  inventSite;
+
+        inventSite.selectForUpdate(_update);
+
+        if (_inventSiteId)
+        {
+            select firstonly inventSite
+                index SiteIdx
+                where inventSite.SiteId == _inventSiteId;
+        }
+
+        return inventSite;
+    }
+
+```
+
+To create our Find() method on our Custom Table, we need to create of our own primary key or index. Also we need to set the property not to allow duplicates. 
+
+Create the index, name it and then drag the column we want to use as the index.
+
+Then go to our Table method, to create a new method.
+
+```x++
+  public static KokoEmployeeTable find(KokoEmployeeId _empId, boolean _forUpdate = false)
+  {
+      KokoEmployeeTable employeeTable;
+
+      if(_empId)
+      {
+          employeeTable.selectForUpdate(_forUpdate);
+
+          select firstOnly employeeTable index hint PrimaryKeyIndex
+              where employeeTable.KokoEmployeeId == _empId;
+      }
+
+      return employeeTable;
+  }
+```
+
+We can test it in a runnable class.
+
+```x++
+ public static void FinderTest()
+ {
+     KokoEmployeeId employeeId = 4567;
+
+     boolean lockForUpdate = true; // Set to true if you want to lock the record for update, false otherwise
+     KokoEmployeeTable employeeTable;
+
+     employeeTable = KokoEmployeeTable::find(employeeId, lockForUpdate);
+     info(strFmt("Employee ID: %1, First Name: %2, Last Name: %3", employeeTable.KokoEmployeeId, employeeTable.FirstName, employeeTable.LastName));
+ }
+```
+
+EXIST
+_______
+
+Each tables must have 2 static methods one is FIND() and the other is EXIST(). They both take the primary key of the table as a parameter, and they return the matching record or a boolean value in case of the exist method.
+
+For example in the InventSite
+
+```x++
+ static public boolean exist(InventSiteId  _inventSiteId)
+ {
+     return _inventSiteId && (select RecId from inventSite
+                                  index SiteIdx
+                                  where inventSite.SiteId == _inventSiteId).RecId != 0;
+ }
+```
+
+
+CUSTOM EXTENSION
+_______

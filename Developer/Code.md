@@ -341,9 +341,6 @@ internal final class RunnableClass
 }
 ```
 
-
-
-
 ```x++
 public class KokoEmployeeTable extends common
 {
