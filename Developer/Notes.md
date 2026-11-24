@@ -29,6 +29,8 @@ https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/get-started/v
 
 Develop an entity and enable it for data export => https://learn.microsoft.com/en-us/training/modules/integration-concepts-finance-operations/2-entity
 
+https://github.com/PaulHeisterkamp
+
 FDD : Functional Design Document.
 
 What is FDD ? 
@@ -57,7 +59,7 @@ internal final class RunnableClass
     /// <param name = "_args">The specified arguments.</param>
     public static void main(Args _args)
     {
-        int myInt;
+        int myInt;0
         int64 myInt64;
         real myReal;
         str myStr;
@@ -1140,3 +1142,54 @@ For example in the InventSite
 
 CUSTOM EXTENSION
 _______
+
+Customization in Dynamics Finance and Operations (D365 F & O) is essential because it allows organizations to tailor the software to their specific business needs. While it offers a broad range of features and capabilities out of the box, no single solution can accommodate the unique processes and requirements of every business. 
+
+Why needed ? 
+- Adaptation to unique business processes.
+- Competitive advantage.
+- Compliance and regulatory requirements
+- Integration with existing systems
+- Use adoption and efficiency
+- Scalability and growth
+- data management and analysis
+- Customer-centric approaches
+- Efficiency and automation
+- Industry-Specific solutions
+- Continuous improvement 
+
+Key things to note during customization
+______
+- Avoid modifying base code at all cost.
+- Frequent binary updates 
+- Customization via Extensions only.
+- Extensibility Request Support Ticket if extension cannot be achieved
+- X++ for custom code
+- Event handlers an methods in extensions.
+- Chain of command (CoC) for customization.   
+
+When a change needs to be propagated through the entire application, you should create an extension of that element to modify properties or components.
+
+We can create extensions for 
+- Labels
+- Enums
+- Extended Data Types 
+- Tables
+- Data Entities
+- Forms
+- Menu
+
+EDT Extension Class Work
+_____
+
+![edt extension](Images/edtextensionclasswork.png)
+
+1. Go to the AOT, search for AgencyLocationCode then right click it and select Create Extension.
+2. Do not rename is it as it will be created as AgencyLocationCode.[model name]
+3. Then right click and select Open to show the designer mode
+4. Right click on it and select Properties
+5. Then change the String Size from 12 to 14 then save and build
+6. So that's how we extend EDT which are basically the data types used on the UI,DB,Form etc.
+
+Table Extension
+_____
